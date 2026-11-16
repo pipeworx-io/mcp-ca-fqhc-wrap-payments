@@ -1,0 +1,56 @@
+[
+  {
+    "name": "ca_fqhc_wrap_lookup",
+    "description": "California Federally Qualified Health Center (FQHC) wrap payment COUNTS and managed care encounter match figures, by health center name (substring) or NPI, across calendar years 2021-2023. Source: California Department of Health Care Services, Federally Qualified Health Center Wrap Payment and Managed Care Encounter dataset. Returns per year: count of wrap payments submitted, count of managed care encounters, count of matches, and match percentage. These are counts, NOT dollar amounts and NOT payment rates. Suppressed small cells come back as null with the publisher annotation. An unmatched name returns near matches. NPI is a 10-digit string. Not for per-visit PPS rates (not published here).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Health center name or part of it, e.g. \"Asian Health\" (case-insensitive; the publisher truncates long names)"
+        },
+        "npi": {
+          "type": "string",
+          "description": "10-digit NPI as a string, e.g. \"1003134545\""
+        },
+        "calendar_year": {
+          "type": "string",
+          "description": "Optional: 2021, 2022 or 2023 (or \"CY2022\") to return one year only"
+        },
+        "limit": {
+          "type": "number",
+          "description": "Max health centers to return (default 25, max 100)"
+        }
+      }
+    }
+  },
+  {
+    "name": "ca_fqhc_wrap_year_summary",
+    "description": "Statewide summary of California FQHC wrap payment COUNTS and managed care encounter matches for a calendar year (2021-2023): the publisher's own statewide total row, our recomputed sum over centers, how many centers are suppressed or unreported, and the centers with the most wrap payments or the lowest match percentage. Source: California Department of Health Care Services, Federally Qualified Health Center Wrap Payment and Managed Care Encounter dataset. Counts and percentages only, NOT dollar amounts and NOT payment rates.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "calendar_year": {
+          "type": "string",
+          "description": "2021, 2022 or 2023 (or \"CY2023\"); omit for all three years"
+        },
+        "rank_by": {
+          "type": "string",
+          "enum": [
+            "wrap_payments",
+            "lowest_match_percentage"
+          ],
+          "description": "How to rank the top centers (default wrap_payments)"
+        },
+        "top_n": {
+          "type": "number",
+          "description": "Centers to list per year (default 10, max 50)"
+        },
+        "min_wrap_payments": {
+          "type": "number",
+          "description": "For lowest_match_percentage: ignore centers with fewer wrap payments than this (default 100)"
+        }
+      }
+    }
+  }
+]

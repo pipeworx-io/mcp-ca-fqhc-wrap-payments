@@ -1,0 +1,33 @@
+{
+  "name": "@pipeworx/mcp-ca-fqhc-wrap-payments",
+  "version": "0.1.0",
+  "description": "ca-fqhc-wrap-payments",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./tools.json": "./tools.json",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "mcp-ca-fqhc-wrap-payments": "bin/cli.js"
+  },
+  "files": ["bin/", "lib/", "tools.json", "server.json"],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": ["mcp", "mcp-server", "model-context-protocol", "pipeworx", "ca-fqhc-wrap-payments"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pipeworx-io/mcp-ca-fqhc-wrap-payments.git"
+  },
+  "mcpName": "io.github.pipeworx-io/ca-fqhc-wrap-payments",
+  "pipeworx": {
+    "mode": "gateway",
+    "slug": "ca-fqhc-wrap-payments",
+    "gatewaySlug": "ca-fqhc-wrap-payments",
+    "sourceHash": "v1-a908912fef88c876ead7e50ce646c7e648d0457b05aae5f5d43b1d56646b2791",
+    "sourceCommit": "874331b0c46b151f9264bd14840631427a7721c1"
+  }
+}
